@@ -1,5 +1,5 @@
-<h1>{{$ctrl.surname}}</h1>
-<img src="{{'./mockdata/photos/' + $ctrl.picture}}">
-<div>{{$ctrl.name}}</div>
-<div ng-repeat="number in $ctrl.phoneNumbers">{{number}}</div>
-<div ng-repeat="addressLine in $ctrl.address">{{addressLine}}</div>
+<h1>{{$ctrl.data.surname}}</h1>
+<img ng-src="./mockdata/photos/{{$ctrl.data.picture}}">
+<div>{{$ctrl.data.name}}</div>
+<div ng-repeat="number in $ctrl.data.phoneNumbers">{{number}}</div>
+<div ng-repeat="addressLine in $ctrl.data.address">{{addressLine}}</div>
