@@ -1,0 +1,13 @@
+{
+  "name": "personal",
+  "version": "1.0.0",
+  "description": "My first Angular 1 starter app",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joseph White",
+  "dependencies": {
+    "fileserver": "0.2.2"
+  }
+}
