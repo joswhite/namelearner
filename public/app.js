@@ -23,7 +23,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		url: '/search',
 		template: '<h2 style="color:red;">Sorry, Search People not implemented!</h2>'
 	});
-	$stateProvider.state('view', { url: '/view', component: 'view' });
+	$stateProvider.state('view', { url: '/view', component: 'viewComponent' });
 	$stateProvider.state({
 		name: 'edit',
 		url: '/edit',
@@ -35,3 +35,4 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		template: '<h2 style="color:red;">Sorry, Add Person not implemented!</h2>'
 	});
 }]);
+

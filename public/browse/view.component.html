@@ -1,0 +1,9 @@
+<h1>{{$ctrl.person.surname}}</h1>
+<img ng-src="./database/photos/{{$ctrl.person.picture}}">
+<div>{{$ctrl.person.name}}</div>
+<div ng-repeat="number in $ctrl.person.phoneNumbers">{{number}}</div>
+<div ng-repeat="addressLine in $ctrl.person.address">{{addressLine}}</div>
+<a class="editLink" href="" ng-click="editable = !editable">Edit Information</a><br>
+<!--<people-edit ng-if="editable" people="$ctrl.people" on-update="$ctrl.update(name, phoneNumber, addressLine, index)">
+</people-edit>-->
+
