@@ -1,4 +1,4 @@
-{{picture: 'default.jpg', name: 'Susan Long', phoneNumbers: ['550-872-4499'], address: ['31 Hill Court', 'Bel Air, MD 21014'] },
+[{picture: 'default.jpg', name: 'Susan Long', phoneNumbers: ['550-872-4499'], address: ['31 Hill Court', 'Bel Air, MD 21014'] },
 { picture: 'default.jpg', name: 'Dave Cruz', phoneNumbers: ['866-691-4760', '032-197-0733', '550-872-4499'], address: ['9553 Wayne Dr.', 'Maineville, OH 45039'] },
 { picture: 'default.jpg', name: 'Alberto Norton', phoneNumbers: ['389-733-4786'], address: ['7854 East Joy Ridge St.', 'Little Falls, NJ 07424'] },
 { picture: 'default.jpg', name: 'George Bush', phoneNumbers: ['726-428-9403', '216-090-5969'], address: ['946 Kingston Ave.', 'Chesterton, IN 46304'] },
@@ -197,4 +197,4 @@
 { picture: 'default.jpg', name: 'Leland Gutierrez', phoneNumbers: ['559-162-2334'], address: ['962 Myrtle Dr.', 'Sun Prairie, WI 53590'] },
 { picture: 'default.jpg', name: 'Fred Nichols', phoneNumbers: ['716-817-7033', '320-318-2631'], address: ['865 Sutor Dr.', 'West Bend, WI 53095'] },
 { picture: 'default.jpg', name: 'Francis Howell', phoneNumbers: ['376-548-4169'], address: ['8252 Manhattan St.', 'Romulus, MI 48174'] },
-{ picture: 'default.jpg', name: 'Johnnie Sandoval', phoneNumbers: ['829-350-3174'], address: ['93 North Brown Ave.', 'Roanoke, VA 24012'] }}
+{ picture: 'default.jpg', name: 'Johnnie Sandoval', phoneNumbers: ['829-350-3174'], address: ['93 North Brown Ave.', 'Roanoke, VA 24012'] }]

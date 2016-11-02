@@ -1,17 +1,28 @@
+// Structured similar to "A TDD Approach to Building a Todo API Using Node.js and MongoDB"
+// on www.semaphoreci.com.
 var express = require('express');
-var join = require('path').join
 var mongoose = require('mongoose');
+var join = require('path').join;
+var routes = require('./routes');
+
+// App setup
+var app = express();
 var port = 8080;
 
-var app = express();
-
-//Static assets
-app.use('/', express.static(join(__dirname, "/public")));
-
-//REST API
+// REST API
 mongoose.connect('mongodb://localhost:27017/nameLearner');
+app.use('/api', routes);
 
-//Start server
+// Static content
+app.use('/', express.static(join(__dirname, 'public')));
+
+// Error handling (designated by 4-parameter type signature)
+app.use(function(err, req, res, next) {
+    console.error(err.stack);
+    res.status(500).send('Server error!');
+});
+
+// Start server
 app.listen(port, function() {
     console.log('Listening on port ' + port);
 });
