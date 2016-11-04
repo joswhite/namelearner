@@ -1,18 +1,40 @@
 angular.module('app')
-	.factory("peopleService", PeopleService);
+	.factory("peopleService", ['$http', '$resource', PeopleService]);
 
-function PeopleService() {
+function PeopleService($http, $resource) {
 	var service = {
-		getPerson: getPerson
+		addPerson: addPerson,
+		addPeople: addPeople,
+		deletePerson: deletePerson,
+		getPeople: getPeople,
+		getPerson: getPerson,
+		updatePerson: updatePerson
 	};
 	return service;
 
+	//return $resource('/api/people/:id');
+
+	function addPerson() {
+
+	};
+
+	function addPeople() {
+
+	};
+
+	function deletePerson(id) {
+
+	};
+
+	function getPeople() {
+		return $http.get('/api/people');
+	};
+
 	function getPerson(id) {
-		return {
-			picture: 'default.jpg',
-			name: 'Ana Swanlund',
-			phoneNumbers: ['425.881.4024','206.114.8613'],
-			address: ['429 East Bay Drive', 'Suite 30, Apt 25', 'Fort Collins, Colorado']
-		};
-	}
+		return $http.get('/api/people/4Db');
+	};
+
+	function updatePerson(id) {
+
+	};
 }
