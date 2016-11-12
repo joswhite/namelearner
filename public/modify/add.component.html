@@ -1,0 +1,22 @@
+<form novalidate id="form">
+    <fieldset>
+        <legend>New User</legend>
+        <div class="row">
+            <div class="left-col"><label for="name">Name:</label></div>
+            <div class="right-col"><input type="text" id="name" ng-model="person.name"></div>
+        </div>
+        <div class="row">
+            <div class="left-col text-area"><label for="phoneNumbers">Phone Numbers:</label></div>
+            <div class="right-col"><textarea id="phoneNumbers" ng-model="person.phoneNumbers"></textarea></div>
+        </div>
+        <div class="row">
+            <div class="left-col text-area"><label for="address">Address:</label></div>
+            <div class="right-col"><textarea id="address" ng-model="person.address"></textarea></div>
+        </div>
+        <div class="row">
+            <div class="left-col"><label for="picture">Picture URL:</label></div>
+            <div class="right-col"><input type="text" id="picture" ng-model="person.picture"></div>
+        </div>
+        <div class="rightCol"><input type="submit" ng-click="$ctrl.addPerson(person)"></div>
+    </fieldset>
+</form>

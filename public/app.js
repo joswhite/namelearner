@@ -29,10 +29,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		url: '/edit',
 		template: '<h2 style="color:red;">Sorry, Edit Person not implemented!</h2>'
 	});
+	$stateProvider.state('new', { url: '/new', component: 'addComponent' });
 	$stateProvider.state({
-		name: 'new',
-		url: '/new',
-		template: '<h2 style="color:red;">Sorry, Add Person not implemented!</h2>'
+		name: 'users',
+		url: '/users',
+		abstract: true
 	});
 }]);
 

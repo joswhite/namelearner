@@ -10,7 +10,7 @@ function handleError(res, reason, message, code) {
 	res.status(code).send(message);
 }
 
-controller.show = function(req, res, next) {
+controller.show = function(req, res) {
 	var id = req.params.id;
 	personModel.findById(id, function(err, data) {
 		if (err) {
@@ -22,7 +22,7 @@ controller.show = function(req, res, next) {
 	});
 };
 
-controller.list = function(req, res, next) {
+controller.list = function(req, res) {
 	personModel.find({}, function(err, data) {
 		if (err) {
 			handleError(res, err.message, 'Could not retrieve people', httpStatus.INTERNAL_SERVER_ERROR);
@@ -33,7 +33,7 @@ controller.list = function(req, res, next) {
 	});
 };
 
-controller.create = function(req, res, next) {
+controller.create = function(req, res) {
 	personModel.create(req.body, function(err, data) {
 		if (err) {
 			handleError(res, err.message, 'Could not create person or people', httpStatus.BAD_REQUEST);
@@ -44,7 +44,7 @@ controller.create = function(req, res, next) {
 	});
 };
 
-controller.update = function(req, res, next) {
+controller.update = function(req, res) {
 	var id = req.params.id;
 	personModel.findByIdAndUpdate(id, req.body, function(err, data) {
 		if (err) {
@@ -56,7 +56,7 @@ controller.update = function(req, res, next) {
 	});
 };
 
-controller.delete = function(req, res, next) {
+controller.delete = function(req, res) {
 	var id = req.params.id;
 	personModel.findByIdAndRemove(id, req.body, function(err, data) {
 		if (err) {
