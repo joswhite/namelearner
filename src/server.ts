@@ -8,7 +8,7 @@ var routes = require('./routes');
 
 // App setup
 var app = express();
-var port = 8080;
+var port = 8020;
 
 // DB
 mongoose.connect('mongodb://localhost:27017/nameLearner');
