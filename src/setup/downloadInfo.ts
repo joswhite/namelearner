@@ -21,6 +21,8 @@
 // photos
 
 // Variables ===========================================================================================================
+interface PhotoEntity { photoUrl: string, filename?: string };
+
 var DEBUG = true;
 var DEBUG_MAX_HOUSEHOLDS = 200;
 var photos = {};
@@ -41,7 +43,6 @@ function resetVariables() {
 }
 
 // Configure photo and object downloads ================================================================================
-//noinspection TypeScriptUnresolvedFunction
 var downloadElement = $('<a id="custom-download"></a>');
 
 function downloadPhoto(url, filename) {   // See http://stackoverflow.com/questions/31691679
@@ -70,9 +71,8 @@ function downloadObject(data, filename) { // See http://stackoverflow.com/questi
 }
 
 // Download info =======================================================================================================
-//noinspection TypeScriptUnresolvedVariable
+declare var ajaxTrapDataErrorWrapper: {ajaxJson: any};
 var ajaxFunction = ajaxTrapDataErrorWrapper.ajaxJson;
-//noinspection TypeScriptUnresolvedVariable
 var getJSONFunction = $.getJSON;
 var api = {
 	ward: 'services/web/v3.0/unit/current-user-ward-stake/',
@@ -324,11 +324,10 @@ function executeAutomatedTests() {
 	expect('replace nonalphanumeric', replaceNonAlphaNumeric('5a$5c'), '5a-5c');
 	expect('replace nonalphanumeric globally', replaceNonAlphaNumeric('a`~!%&'), 'a-----');
 	// Part 2 - Queueing photo for download
-	var entity = { photoUrl: 'b42' };
+	var entity: PhotoEntity = { photoUrl: 'b42' };
 	resetVariables();
 	expect('add photo to entity - photo object empty length', photos['white24'], undefined);
 	addEntityPhoto('white24', entity);
-	//noinspection TypeScriptUnresolvedVariable
 	expect('add photo to entity - entity filename', entity.filename, 'white24_00');
 	expect('add photo to entity - photo object begin length', photos['white24'].length, 1);
 	expect('add photo to entity - photo object url property', photos['white24'][0].url, 'b42');

@@ -375,7 +375,7 @@
      *
      * In this example we create a custom method on our resource to make a PUT request
      * ```js
-     *    var app = angular.module('app', ['ngResource', 'ngRoute']);
+     *    var app = angular.module('client', ['ngResource', 'ngRoute']);
      *
      *    // Some APIs expect a PUT request in the format URL/object/ID
      *    // Here we are creating an 'update' method

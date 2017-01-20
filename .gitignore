@@ -1,17 +1,10 @@
 # Project
 *.log
 /node_modules
-/to_organize
+/temp
 
 # Generated Javascript files
 /src/**/*.js
-/dist/controllers
-/dist/models
-/dist/setup
-/dist/*.js
-
-# User-specific data
-/dist/data
 
 # IntelliJ
 /.idea

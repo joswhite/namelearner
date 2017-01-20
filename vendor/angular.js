@@ -1687,7 +1687,7 @@ function angularInit(element, bootstrap) {
  * <div class="alert alert-warning">
  * **Note:** Do not bootstrap the app on an element with a directive that uses {@link ng.$compile#transclusion transclusion},
  * such as {@link ng.ngIf `ngIf`}, {@link ng.ngInclude `ngInclude`} and {@link ngRoute.ngView `ngView`}.
- * Doing this misplaces the app {@link ng.$rootElement `$rootElement`} and the app's {@link auto.$injector injector},
+ * Doing this misplaces the app {@link ng.$rootElement `$rootElement`} and the client's {@link auto.$injector injector},
  * causing animations to stop working and making the injector inaccessible from outside the app.
  * </div>
  *

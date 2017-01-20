@@ -3,14 +3,12 @@ var httpStatus = require('http-status-codes');
 // 200 OK, 201 CREATED, 400 BAD_REQUEST, 401 UNAUTHORIZED, 404 NOT_FOUND
 // 200 is implied but we are being verbose here
 
-var controller = {};
-
 function handleError(res, reason, message, code) {
 	console.error('Error: ' + reason);
 	res.status(code).send(message);
 }
 
-controller.show = function(req, res) {
+export function show(req, res) {
 	var id = req.params.id;
 	personModel.findById(id, function(err, data) {
 		if (err) {
@@ -20,9 +18,9 @@ controller.show = function(req, res) {
 			res.status(httpStatus.OK).json(data);
 		}
 	});
-};
+}
 
-controller.list = function(req, res) {
+export function list(req, res) {
 	personModel.find({}, function(err, data) {
 		if (err) {
 			handleError(res, err.message, 'Could not retrieve people', httpStatus.INTERNAL_SERVER_ERROR);
@@ -31,9 +29,9 @@ controller.list = function(req, res) {
 			res.status(httpStatus.OK).json(data);
 		}
 	});
-};
+}
 
-controller.create = function(req, res) {
+export function create(req, res) {
 	personModel.create(req.body, function(err, data) {
 		if (err) {
 			handleError(res, err.message, 'Could not create person or people', httpStatus.BAD_REQUEST);
@@ -42,9 +40,9 @@ controller.create = function(req, res) {
 			res.status(httpStatus.CREATED).json(data);
 		}
 	});
-};
+}
 
-controller.update = function(req, res) {
+export function update(req, res) {
 	var id = req.params.id;
 	personModel.findByIdAndUpdate(id, req.body, function(err, data) {
 		if (err) {
@@ -54,9 +52,9 @@ controller.update = function(req, res) {
 			res.status(httpStatus.OK).json(data);
 		}
 	});
-};
+}
 
-controller.delete = function(req, res) {
+export function remove(req, res) {
 	var id = req.params.id;
 	personModel.findByIdAndRemove(id, req.body, function(err, data) {
 		if (err) {
@@ -66,6 +64,4 @@ controller.delete = function(req, res) {
 			res.status(httpStatus.OK).json(data);
 		}
 	});
-};
-
-module.exports = controller;
+}

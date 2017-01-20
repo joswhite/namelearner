@@ -4214,7 +4214,7 @@
          * @example
          * ```js
          *
-         * var app = angular.module('app', ['ui.router.router']);
+         * var app = angular.module('client', ['ui.router.router']);
          *
          * app.config(function ($urlRouterProvider) {
 	     *   // Here's an example of how you might allow case insensitive urls
@@ -4257,7 +4257,7 @@
          * @example
          * ```js
          *
-         * var app = angular.module('app', ['ui.router.router']);
+         * var app = angular.module('client', ['ui.router.router']);
          *
          * app.config(function ($urlRouterProvider) {
 	     *   // if the path doesn't match any of the urls you configured
@@ -4306,7 +4306,7 @@
          * @example
          * ```js
          *
-         * var app = angular.module('app', ['ui.router.router']);
+         * var app = angular.module('client', ['ui.router.router']);
          *
          * app.config(function ($urlRouterProvider) {
 	     *   $urlRouterProvider.when($state.url, function ($match, $stateParams) {
@@ -4385,7 +4385,7 @@
          * @example
          * ```js
          *
-         * var app = angular.module('app', ['ui.router']);
+         * var app = angular.module('client', ['ui.router']);
          *
          * app.config(function ($urlRouterProvider) {
 	     *   // Prevent $urlRouter from automatically intercepting URL changes;
@@ -5970,7 +5970,7 @@
          *
          * @example
          * <pre>
-         * let app angular.module('app', ['ui.router']);
+         * let app angular.module('client', ['ui.router']);
          *
          * app.controller('ctrl', function ($scope, $state) {
 	     *   $scope.reload = function(){
@@ -5991,7 +5991,7 @@
          * <pre>
          * //assuming app application consists of 3 states: 'contacts', 'contacts.detail', 'contacts.detail.item'
          * //and current state is 'contacts.detail.item'
-         * let app angular.module('app', ['ui.router']);
+         * let app angular.module('client', ['ui.router']);
          *
          * app.controller('ctrl', function ($scope, $state) {
 	     *   $scope.reload = function(){
@@ -6027,7 +6027,7 @@
          *
          * @example
          * <pre>
-         * let app = angular.module('app', ['ui.router']);
+         * let app = angular.module('client', ['ui.router']);
          *
          * app.controller('ctrl', function ($scope, $state) {
 	     *   $scope.changeState = function () {
@@ -6109,7 +6109,7 @@
          *
          * @example
          * <pre>
-         * let app = angular.module('app', ['ui.router']);
+         * let app = angular.module('client', ['ui.router']);
          *
          * app.controller('ctrl', function ($scope, $state) {
 	     *   $scope.changeState = function () {
@@ -7692,7 +7692,7 @@
        * ```
        *
        *
-       * When the app state is "app.user" (or any children states), and contains the state parameter "user" with value "bilbobaggins",
+       * When the app state is "client.user" (or any children states), and contains the state parameter "user" with value "bilbobaggins",
        * the resulting HTML will appear as (note the 'active' class):
        *
        * ```html
