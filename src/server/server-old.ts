@@ -37,54 +37,45 @@ passport.serializeUser(function(user: {id: string}, callback) {
 });
 
 passport.deserializeUser(function(id, callback) {
-	userModel.findById(id, function (error, user) {
-		if (error) { return callback(error); }
-		callback(null, user);
+	userModel.findById(id, function(err, user) {
+		if (err) { return callback(err); }
+		else { callback(null, user); }
 	});
 });
 
-
-// Configure view engine to render EJS templates.
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-
-// Use application-level middleware for common functionality, including
-// logging, parsing, and session handling.
-app.use(require('body-parser').urlencoded({ extended: true }));
-app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
-
-// Initialize Passport and restore authentication state, if any, from the
-// session.
+app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Define routes.
-app.get('/',
-	function(req, res) {
-		res.render('home', { user: req.user });
-	});
-
-app.get('/login',
-	function(req, res){
-		res.render('login');
-	});
+// Public/login
+app.get('/login', (req: express.Request, res: express.Response) => {
+	console.log('Static file');
+	res.sendFile(path.join(content_dir, './login.html'));
+});
 
 app.post('/login',
-	passport.authenticate('local', { failureRedirect: '/login' }),
-	function(req, res) {
+    passport.authenticate('local', { failureRedirect: '/login2' } ),
+    function(req, res) {
 		res.redirect('/');
-	});
+    }
+);
 
-app.get('/logout',
-	function(req, res){
-		req.logout();
-		res.redirect('/');
-	});
 
-app.get('/profile',
-	require('connect-ensure-login').ensureLoggedIn(),
-	function(req, res){
-		res.render('profile', { user: req.user });
-	});
 
-app.listen(3000);
+// REST API
+app.use('/api', api);
+
+
+// Other static content
+app.use('/', express.static(content_dir));
+
+// Error handling (designated by 4-parameter type signature)
+app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+	console.error(err.stack);
+	res.status(500).send('Server error!');
+});
+
+// Start server
+app.listen(port, function() {
+	console.log('Listening on port ' + port + ', serving ' + content_dir);
+});

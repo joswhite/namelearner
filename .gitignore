@@ -5,6 +5,7 @@
 
 # Generated Javascript files
 /src/**/*.js
+/dist
 
 # IntelliJ
 /.idea

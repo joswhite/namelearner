@@ -1,4 +1,4 @@
-// var autoPrefixer = require('autoprefixer');
+var autoPrefixer = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 
@@ -8,6 +8,7 @@ module.exports = {
 	externals: {
 		'angular': true,
 		// Wrapped in window because of hyphens
+        'angular-resource': 'window["angular-resource"]',
 		'angular-ui-router': 'window["angular-ui-router"]'
 	},
 	module: {
@@ -16,16 +17,14 @@ module.exports = {
 		],*/
 		loaders: [
 			{ test: /\.ts$/, loader: 'ts-loader' },
-			{ test: /index\.html$/, loader: 'html', exclude: /node_modules/ }
-			/*
+			{ test: /index\.html$/, loader: 'html', exclude: /node_modules/ },
 			{
 				test: /\.html$/,
-				loader: 'ngtemplate?relativeTo=' + (path.resolve(__dirname, './src')) + '/!html',
+				loader: 'ngtemplate?relativeTo=' + (path.resolve(__dirname, './src/client')) + '/!html',
 				exclude: /index\.html$/
-			}
-			,
-			{ test: /\.scss$/, loaders: [ 'style', 'css', 'sass', 'postcss' ] },
-			{ test: /\.json/, loaders: [ 'json' ] }*/
+			},
+			{ test: /\.scss$/, loaders: [ 'style', 'css', 'sass', 'postcss' ] }
+			/*{ test: /\.json/, loaders: [ 'json' ] }*/
 		]
 	},
 	output: {
@@ -35,11 +34,11 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({ template: 'src/client/index.html', inject: 'body' })
 	],
-	/*postcss: function() {
+	postcss: function() {
 		return [
 			autoPrefixer({ browsers: ['last 2 versions'] })
 		];
-	},*/
+	},
     resolve: {
         extensions: [ '', '.ts', '.js', '.json' ],
         modulesDirectories: ['./src/client', './vendor', 'node_modules']

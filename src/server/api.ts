@@ -3,8 +3,15 @@ import express = require('express');
 const router = express.Router();
 
 import people = require('./controllers/people');
+import users = require('./controllers/users');
 
 // Use traditional naming conventions
+router.get('/users/:id', users.show);
+router.get('/users', users.list);
+router.post('/users', users.create);
+router.put('/users/:id', users.update);
+router.delete('/users/:id', users.remove);
+
 router.get('/people/:id', people.show);
 router.get('/people', people.list);
 router.post('/people', people.create);

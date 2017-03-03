@@ -2,6 +2,56 @@
 
 Learn the names of those in your organization. Written by Joseph White, 2016-2017. Unauthorized use prohibited.
 
+### Todos
+
+#### Application
+
+The application now can upload images via a separate page. Submit JSON via the "Add" tab. Next:
+
+- Passport: what am I doing wrong?
+Note: credentials: root/5091
+- login security
+- password hash
+- https
+- https that only fires up in production
+- upload images via same server
+- link to CodeShip
+- deploy on Heroku + MongoLabs
+- users
+
+#### Environment
+
+- get scss source maps to load
+
+
+### Usage
+
+#### Import My Ward
+
+1. Setup development environment (below)
+
+2. Download ward directory 
+- Navigate to your ward's directory on lds.org.
+- Inject dist/setup/downloadInfo.js into Chrome developer console
+- Wait for photos and data.json to download
+
+3. Import ward directory
+- run dist/server/upload.js on server and follow its directions to upload photos
+- use Angular app at localhost:8020 to upload all data.
+
+#### Setup Development Environment
+
+Run the following commands
+1. `npm install` - install all dependencies
+2. `npm run watch` - gulp watch for changes in TS code
+3. `npm start` - start your server
+
+Note: `gulp build` and `gulp` may be substituted for 
+`npm run build` and `npm run watch` if you have gulp installed globally.
+
+#### Useful commands
+- `npm run build` - gulp builds project only once
+
 ### Directory Structure
 
 dist/
@@ -38,36 +88,6 @@ temp/ (default location)
 - Otherwise, status code is 2xx and body is an object or an array of objects
 related to the request
 
-
-### Set up
-
-#### Build
-Run the following commands
-1. `npm install`
-2. `npm run build`
-
-#### Setup Development Environment
-Run the following commands
-1. `npm install`
-2. `npm run watch`
-3. `npm start`
-
-#### Useful Commands
-* `npm start` Starts the server
-* `npm run build` Builds
-* `npm run watch` Builds continuously, watching files
-
-Note: `npm run` may be substituted for `gulp` if you have it installed globally.
-
-### Todos
-
-#### Application
-
-- all people on a page
-- login security and https
-- deploy on Heroku
-
-#### Environment
 
 
 

@@ -22,6 +22,7 @@ gulp.task('watch-webpack', function() {
     webpackConfig.watch = true;
     return gulp.src('./src/client/main.ts')
         .pipe(webpackStream(webpackConfig))
+		.on('error', swallowError)
         .pipe(gulp.dest('dist/client/'));
 });
 
@@ -88,3 +89,9 @@ gulp.task('watch', [
     'watch-webpack', 'watch-ts-server', 'watch-ts-setup',
 	'watch-copy-images'
 ]);
+
+// Catch errors for watch tasks that don't
+function swallowError(error) {
+	//Ignore error
+	//console.log(error.toString());
+}

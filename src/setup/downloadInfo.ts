@@ -1,7 +1,10 @@
+import { ILDSData } from './lib';
+
 /* Download all household info and photos from your lds.org ward directory.
  * Set DEBUG and DEBUG_MAX_HOUSEHOLDS, then test by copying 'test()', run using 'run()'.
  * - Remove 'run()' at end of file before testing.
  * - Important! You cannot simply execute the test() function. You must copy-paste the asynchronous functions manually.
+ * - Test the number of photos downloaded to make sure it is correct. (See below.)
  * - Other Notes:
  *   * Test this before executing it to make sure the lds.org API hasn't changed
  *   * Pause task runner execution by calling taskRunner.pause(), continue by calling taskRunner.execute()
@@ -26,7 +29,7 @@ interface PhotoEntity { photoUrl: string, filename?: string };
 var DEBUG = true;
 var DEBUG_MAX_HOUSEHOLDS = 200;
 var photos = {};
-var data = {
+var data: ILDSData = {
 	wardUnitNo: null,
 	householdSummaries: null,
 	householdProfiles: []
