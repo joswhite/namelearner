@@ -1,5 +1,8 @@
+// TODO: Note: works in Windows cmd but not Git bash (doesn't detect keyup)
+// Usage:
+// let term = require('./dev/term')(function (expr) { return eval(expr); }, 'server');	//$debug
 import fs = require('fs');
-import { ClientError } from './logger';
+import { ClientError } from './lib';
 
 var readcommand = require('readcommand');
 var colors = require('colors');
