@@ -41,12 +41,17 @@ export default class AuthenticateUser {
 		return passport.authenticate('local', { failureRedirect: this.options.loginPage });
 	}
 
+	ensureLoggedIn() {
+		return connectEnsureLogin.ensureLoggedIn(this.options.loginPage);
+	}
+
+	onLogout(req, res) {
+		req.logout();
+		res.redirect(this.options.loginPage);
+	}
+
 	startPassport() {
 		this.expressApp.use(passport.initialize());
 		this.expressApp.use(passport.session());
-	}
-
-	ensureLoggedIn() {
-		return connectEnsureLogin.ensureLoggedIn(this.options.loginPage);
 	}
 }

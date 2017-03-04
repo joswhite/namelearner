@@ -20,7 +20,7 @@ app.use(require('morgan')('combined'));
 // DB
 mongoose.connect('mongodb://localhost:27017/nameLearner');
 
-// Passport
+// Authentication
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
 	expressSession({
@@ -32,9 +32,7 @@ app.use(
 );
 auth.startPassport();
 
-
-
-// Public/login
+// Public content
 app.get('/login', (req: express.Request, res: express.Response) => {
 	res.sendFile(path.join(content_dir, './login.html'));
 });
@@ -43,18 +41,11 @@ app.post('/login', auth.authenticateUser(), function(req, res) {
 	res.redirect('/');
 });
 
-app.get('/logout', function(req, res){
-	req.logout();
-	res.redirect('/login');
-});
+app.get('/logout', auth.onLogout);
 
+// Other content
 app.use('/', auth.ensureLoggedIn());
-
-// REST API
 app.use('/api', api);
-
-// Other static content
-
 app.use('/', express.static(content_dir));
 
 // Error handling (designated by 4-parameter type signature)
