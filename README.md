@@ -11,7 +11,6 @@ The application now can upload images via a separate page. Submit JSON via the "
 Note: credentials: root/5091
 - https
 - https that only fires up in production
-- Add link on Angular app that links to '/logout'.
 - Add "Welcome Joseph" to Angular app by using 'req.user' (or maybe not, since only Express can access it?)
 - password hash
 - upload images via same server

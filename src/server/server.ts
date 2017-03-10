@@ -41,7 +41,7 @@ app.post('/login', auth.authenticateUser(), function(req, res) {
 	res.redirect('/');
 });
 
-app.get('/logout', auth.onLogout);
+app.get('/logout', auth.onLogout());
 
 // Other content
 app.use('/', auth.ensureLoggedIn());

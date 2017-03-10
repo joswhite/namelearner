@@ -45,9 +45,12 @@ export default class AuthenticateUser {
 		return connectEnsureLogin.ensureLoggedIn(this.options.loginPage);
 	}
 
-	onLogout(req, res) {
-		req.logout();
-		res.redirect(this.options.loginPage);
+	onLogout() {
+		let loginPage = this.options.loginPage;	// Removes need for caller to bind to the object
+		return (req, res) => {
+			req.logout();
+			res.redirect(loginPage);
+		}
 	}
 
 	startPassport() {
