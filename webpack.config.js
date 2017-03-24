@@ -17,11 +17,11 @@ module.exports = {
 		],*/
 		loaders: [
 			{ test: /\.ts$/, loader: 'ts-loader' },
-			{ test: /index\.html$/, loader: 'html', exclude: /node_modules/ },
+			{ test: /(index|login)\.html$/, loader: 'html', exclude: /node_modules/ },
 			{
 				test: /\.html$/,
 				loader: 'ngtemplate?relativeTo=' + (path.resolve(__dirname, './src/client')) + '/!html',
-				exclude: /index\.html$/
+				exclude: /(index|login)\.html$/
 			},
 			{ test: /\.scss$/, loaders: [ 'style', 'css', 'sass', 'postcss' ] }
 			/*{ test: /\.json/, loaders: [ 'json' ] }*/
@@ -32,7 +32,8 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist')
 	},
 	plugins: [
-		new HtmlWebpackPlugin({ template: 'src/client/index.html', inject: 'body' })
+		new HtmlWebpackPlugin({ template: 'src/client/index.html', inject: 'body' }),
+		new HtmlWebpackPlugin({ template: 'src/client/login.html', inject: false, filename: 'login.html' })
 	],
 	postcss: function() {
 		return [
