@@ -5,6 +5,7 @@ var User = mongoose.model('User', new Schema({
 	name: String,
 	username: String,
 	password: String,
+	privilegeLevel: Number
 	/*password: { salt: String, hash: String }*/
 }));
 
