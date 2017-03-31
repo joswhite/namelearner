@@ -8,14 +8,13 @@ Learn the names of those in your organization. Written by Joseph White, 2016-201
 
 The application now can upload images via a separate page. Submit JSON via the "Add" tab. Next:
 
-Note: credentials: root/5091
+Note: credentials: root/5091 or admin/Crisis6062
 - https
 - https that only fires up in production
 - Add "Welcome Joseph" to Angular app by using 'req.user' (or maybe not, since only Express can access it?)
 - password hash
 - upload images via same server
-- link to CodeShip
-- deploy on Heroku + MongoLabs
+- deploy on Digital Ocean or AWS
 - users
 
 #### Environment

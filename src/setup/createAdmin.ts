@@ -1,3 +1,6 @@
+/* Creates an admin with USERNAME and PASSWORD
+   node dist/setup/createAdmin.js USERNAME PASSWORD
+ */
 import mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/nameLearner');
 let userModel = require('../server/models/user');
