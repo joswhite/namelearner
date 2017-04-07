@@ -60,5 +60,5 @@ export default startServers;
 // If running from command line, start server
 // Ssee http://stackoverflow.com/questions/6398196
 if (require.main === module) {
-    startServers(null, null);
+    startServers(null, (result) => { console.log(result); });
 }
