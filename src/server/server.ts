@@ -89,7 +89,7 @@ else {
 	// Listen for GitHub webhooks
 	let handler = githubWebhookHandler({
 		path: '/webhook',
-		secret: getConfigFileContents('webhook.secret')
+		secret: getConfigFileContents('webhook.secret').toString()
 	});
 
 	https.createServer(options, (req, res) => {
