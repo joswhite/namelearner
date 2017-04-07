@@ -12,6 +12,8 @@ Note: credentials: root/5091 or admin/Crisis6062
 
 - forever
 - Git Hooks (forever stop, git pull, npm i, gulp build, forever start)
+- Add multiple users from JSON expects object not array (Error in resource configuration for action `save`.
+  Expected response to contain an object but got an array (Request: POST /api/people))
 - Add "Welcome Joseph" to Angular app by using 'req.user' (or maybe not, since only Express can access it?)
 - password hash
 - upload images via same server
