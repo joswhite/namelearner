@@ -22,7 +22,9 @@ export default (expressApp, callback) => {
         cert: getConfigFileContents('umemorize_me.crt')
     };
 
-    https.createServer(options, expressApp).listen(PROD_PORT_HTTPS);
+    if(expressApp) {
+        https.createServer(options, expressApp).listen(PROD_PORT_HTTPS);
+    }
 
     // Listen for GitHub webhooks
     let handler = githubWebhookHandler({
@@ -48,5 +50,7 @@ export default (expressApp, callback) => {
         res.end();
     }).listen(PROD_PORT_HTTP);
 
-    callback('Production server started!');
+    if (callback) {
+        callback('Production server started!');
+    };
 };
