@@ -25,7 +25,7 @@ let auth = new AuthenticateUser(app, { loginPage: '/login' });
 let HOME_DIR = os.homedir();
 
 function getConfigFileContents(file: string): Buffer {
-	return fs.readFileSync(path.resolve(HOME_DIR, 'umemorize_me.ca-bundle'));
+	return fs.readFileSync(path.resolve(HOME_DIR, file));
 }
 
 // Logging
