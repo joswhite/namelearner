@@ -12,7 +12,6 @@ import os = require('os');
 import path = require('path');
 
 // App setup
-let PRODUCTION: boolean = process.env.NAMELEARNER_DEV ? true : false;
 const DEV_PORT = 8020;
 const PROD_PORT_HTTP = 80;
 const PROD_PORT_HTTPS = 443;
@@ -23,13 +22,6 @@ let auth = new AuthenticateUser(app, { loginPage: '/login' });
 
 // Logging
 app.use(require('morgan')('combined'));
-
-// Ensure TLS is used
-app.all('*', (req: express.Request, res: express.Response, next: express.NextFunction) => {
-	if (req.secure) { return next(); }
-
-	res.redirect('https://' + req.hostname + req.url);
-});
 
 // DB
 mongoose.connect('mongodb://localhost:27017/nameLearner');
@@ -85,7 +77,13 @@ else {
 		cert: fs.readFileSync(path.resolve(cert_dir, 'umemorize_me.crt'))
 	};
 
-	http.createServer(app).listen(PROD_PORT_HTTP);
 	https.createServer(options, app).listen(PROD_PORT_HTTPS);
+
+	// Redirect http to https
+	http.createServer((req, res) => {
+		res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+		res.end();
+	}).listen(PROD_PORT_HTTP);
+
 	console.log('Listening on ports ' + PROD_PORT_HTTP + ' and ' + PROD_PORT_HTTPS + ', serving ' + CONTENT_DIR);
 }
