@@ -4,13 +4,17 @@ import bodyParser = require('body-parser');
 import connectMongo = require('connect-mongo');
 import express = require('express');
 import expressSession = require('express-session');
+import fs = require('fs');
+import https = require('https');
 import mongoose = require('mongoose');
+import os = require('os');
 import path = require('path');
 
 // App setup
-const app = express();
-const port = 8020;
-const content_dir = path.join(__dirname, '../client');
+const DEV_PORT = 8020;
+const PROD_PORT = 443;
+const CONTENT_DIR = path.join(__dirname, '../client');
+let app = express();
 const MongoStore = connectMongo(expressSession);
 let auth = new AuthenticateUser(app, { loginPage: '/login' });
 
@@ -34,7 +38,7 @@ auth.startPassport();
 
 // Public content
 app.get('/login', (req: express.Request, res: express.Response) => {
-	res.sendFile(path.join(content_dir, './login.html'));
+	res.sendFile(path.join(CONTENT_DIR, './login.html'));
 });
 
 app.post('/login', auth.authenticateUser(), function(req, res) {
@@ -46,7 +50,7 @@ app.get('/logout', auth.onLogout());
 // Other content
 app.use('/', auth.ensureLoggedIn());
 app.use('/api', api);
-app.use('/', express.static(content_dir));
+app.use('/', express.static(CONTENT_DIR));
 
 // Error handling (designated by 4-parameter type signature)
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
@@ -55,6 +59,21 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 });
 
 // Start server
-app.listen(port, function() {
-	console.log('Listening on port ' + port + ', serving ' + content_dir);
-});
+if (process.env.NAMELEARNER_DEV) {
+	let port = DEV_PORT;
+	app.listen(port, function() {
+		console.log('Listening on port ' + port + ', serving ' + CONTENT_DIR);
+	});
+}
+else {
+	let port = PROD_PORT;
+	let cert_dir = os.homedir();
+
+	let options = {
+		ca: fs.readFileSync(path.resolve(cert_dir, 'umemorize_me.ca-bundle')),
+		key: fs.readFileSync(path.resolve(cert_dir, 'umemorize_me.key')),
+		cert: fs.readFileSync(path.resolve(cert_dir, 'umemorize_me.crt'))
+	};
+
+	https.createServer(options, app).listen(443);
+}

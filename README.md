@@ -1,4 +1,4 @@
-# NameLearner
+# namelearner
 
 Learn the names of those in your organization. Written by Joseph White, 2016-2017. Unauthorized use prohibited.
 
@@ -9,8 +9,11 @@ Learn the names of those in your organization. Written by Joseph White, 2016-201
 The application now can upload images via a separate page. Submit JSON via the "Add" tab. Next:
 
 Note: credentials: root/5091 or admin/Crisis6062
+- document Namecheap stuff
+- check if Mongo is started up 2x
 - https
 - https that only fires up in production
+- namecheap (GitHub student pack) or free method, Git Hooks (forever stop, git pull, npm i, gulp build, forever start)
 - Add "Welcome Joseph" to Angular app by using 'req.user' (or maybe not, since only Express can access it?)
 - password hash
 - upload images via same server
@@ -85,7 +88,3 @@ temp/ (default location)
 - If error, status code is 4xx or 5xx and body is an error message (string)
 - Otherwise, status code is 2xx and body is an object or an array of objects
 related to the request
-
-
-
-

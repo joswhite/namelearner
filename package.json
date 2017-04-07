@@ -14,11 +14,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joswhite/NameLearner.git"
+    "url": "git+https://github.com/joswhite/namelearner.git"
   },
   "author": "Joseph White",
   "license": "MIT",
-  "homepage": "https://github.com/joswhite/NameLearner#readme",
+  "homepage": "https://github.com/joswhite/namelearner#readme",
   "dependencies": {
     "@types/connect-ensure-login": "0.1.0",
     "@types/connect-mongo": "0.0.32",
