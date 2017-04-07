@@ -32,6 +32,7 @@
     "express": "4.14.0",
     "express-session": "1.15.1",
     "formidable": "1.1.1",
+    "github-webhook-handler": "0.6.0",
     "http-status-codes": "1.0.6",
     "jsonfile": "2.4.0",
     "mongoose": "4.7.0",
