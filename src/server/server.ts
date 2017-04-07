@@ -4,29 +4,16 @@ import bodyParser = require('body-parser');
 import connectMongo = require('connect-mongo');
 import express = require('express');
 import expressSession = require('express-session');
-import fs = require('fs');
-import githubWebhookHandler = require('github-webhook-handler');
-import http = require('http');
-import https = require('https');
 import mongoose = require('mongoose');
-import os = require('os');
 import path = require('path');
-
+let serveProduction = require('./serve.production');
 
 // App setup
 const DEV_PORT = 8020;
-const PROD_PORT_GITHUB_WEBHOOKS = 1739;
-const PROD_PORT_HTTP = 80;
-const PROD_PORT_HTTPS = 443;
 const CONTENT_DIR = path.join(__dirname, '../client');
 let app = express();
 const MongoStore = connectMongo(expressSession);
 let auth = new AuthenticateUser(app, { loginPage: '/login' });
-let HOME_DIR = os.homedir();
-
-function getConfigFileContents(file: string): Buffer {
-	return fs.readFileSync(path.resolve(HOME_DIR, file));
-}
 
 // Logging
 app.use(require('morgan')('combined'));
@@ -77,38 +64,7 @@ if (process.env.NAMELEARNER_DEV) {
 	});
 }
 else {
-	// Create https server
-	let options = {
-		ca: getConfigFileContents('umemorize_me.ca-bundle'),
-		key: getConfigFileContents('umemorize_me.key'),
-		cert: getConfigFileContents('umemorize_me.crt')
-	};
-
-	https.createServer(options, app).listen(PROD_PORT_HTTPS);
-
-	// Listen for GitHub webhooks
-	let handler = githubWebhookHandler({
-		path: '/webhook',
-		secret: getConfigFileContents('webhook.secret').toString()
+	serveProduction(app, (result: string) => {
+		console.log(result.concat('\nServing ' + CONTENT_DIR + '.'));
 	});
-
-	https.createServer(options, (req, res) => {
-		handler(req, res, function (err) {
-			console.error('Error in processing git webhook post');
-			res.statusCode = 404;
-			res.end('no such location');
-		})
-	}).listen(PROD_PORT_GITHUB_WEBHOOKS);
-
-	handler.on('push', function (event) {
-		console.log('Received a push event for %s to %s', event.payload.ref);
-	});
-
-	// Redirect http to https
-	http.createServer((req, res) => {
-		res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
-		res.end();
-	}).listen(PROD_PORT_HTTP);
-
-	console.log('Listening on ports ' + PROD_PORT_HTTP + ' and ' + PROD_PORT_HTTPS + ', serving ' + CONTENT_DIR);
 }
