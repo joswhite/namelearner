@@ -86,6 +86,8 @@ gulp.task('build', [
 
 // Watch
 gulp.task('watch', [
+    'webpack', 'ts-server', 'ts-setup',
+    'copy-favicon', 'copy-images', 'copy-vendor',
     'watch-webpack', 'watch-ts-server', 'watch-ts-setup',
 	'watch-copy-images'
 ]);

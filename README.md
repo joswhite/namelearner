@@ -9,11 +9,9 @@ Learn the names of those in your organization. Written by Joseph White, 2016-201
 The application now can upload images via a separate page. Submit JSON via the "Add" tab. Next:
 
 Note: credentials: root/5091 or admin/Crisis6062
-- document Namecheap stuff
-- check if Mongo is started up 2x
-- https
-- https that only fires up in production
-- namecheap (GitHub student pack) or free method, Git Hooks (forever stop, git pull, npm i, gulp build, forever start)
+
+- forever
+- Git Hooks (forever stop, git pull, npm i, gulp build, forever start)
 - Add "Welcome Joseph" to Angular app by using 'req.user' (or maybe not, since only Express can access it?)
 - password hash
 - upload images via same server

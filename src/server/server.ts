@@ -25,7 +25,8 @@ app.use(require('morgan')('combined'));
 mongoose.connect('mongodb://localhost:27017/nameLearner');
 
 // Authentication
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));	// For passport-local
+app.use(bodyParser.json());							// For REST API
 app.use(
 	expressSession({
 		resave: false,
