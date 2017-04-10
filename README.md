@@ -10,8 +10,11 @@ The application now can upload images via a separate page. Submit JSON via the "
 
 Note: credentials: root/5091 or admin/Crisis6062
 
-- forever
 - Git Hooks (forever stop, git pull, npm i, gulp build, forever start)
+  * get serve.production.ts to work (error)
+  * serve.production.js 31:9 - catch errors if someone posts to your url
+  * forever
+  * if location = refs/heads/master, then quit Node and run bash script
 - Hashed passwords, remove from Git repo, change pwd. http://scottksmith.com/blog/2014/05/29/beer-locker-building-a-restful-api-with-node-passport/
 - Add multiple users from JSON expects object not array (Error in resource configuration for action `save`.
   Expected response to contain an object but got an array (Request: POST /api/people))
