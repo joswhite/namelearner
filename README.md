@@ -11,7 +11,6 @@ The application now can upload images via a separate page. Submit JSON via the "
 Note: credentials: root/5091 or admin/Crisis6062
 
 - Git Hooks (forever stop, git pull, npm i, gulp build, forever start)
-  * get serve.production.ts to work (error)
   * serve.production.js 31:9 - catch errors if someone posts to your url
   * forever
   * if location = refs/heads/master, then quit Node and run bash script
