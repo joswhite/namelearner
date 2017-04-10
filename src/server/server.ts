@@ -6,7 +6,7 @@ import express = require('express');
 import expressSession = require('express-session');
 import mongoose = require('mongoose');
 import path = require('path');
-let serveProduction = require('./serve.production');
+import startProductionServer from './serve.production';
 
 // App setup
 const DEV_PORT = 8020;
@@ -64,7 +64,7 @@ if (process.env.NAMELEARNER_DEV) {
 	});
 }
 else {
-	serveProduction(app, (result: string) => {
+	startProductionServer(app, (result: string) => {
 		console.log(result.concat('\nServing ' + CONTENT_DIR + '.'));
 	});
 }

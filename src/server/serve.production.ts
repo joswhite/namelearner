@@ -14,7 +14,9 @@ function getConfigFileContents(file: string): Buffer {
     return fs.readFileSync(path.resolve(HOME_DIR, file));
 }
 
-export default function startServers(expressApp, callback) {
+export default startProductionServer;
+
+function startProductionServer(expressApp, callback) {
     // Create https server
     let options = {
         ca: getConfigFileContents('umemorize_me.ca-bundle'),
@@ -58,5 +60,5 @@ export default function startServers(expressApp, callback) {
 // If running from command line, start server
 // Ssee http://stackoverflow.com/questions/6398196
 if (require.main === module) {
-    startServers(null, (result) => { console.log(result); });
+    startProductionServer(null, (result) => { console.log(result); });
 }
