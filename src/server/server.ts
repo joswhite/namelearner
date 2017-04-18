@@ -14,9 +14,12 @@ const CONTENT_DIR = path.join(__dirname, '../client');
 let app = express();
 const MongoStore = connectMongo(expressSession);
 let auth = new AuthenticateUser(app, { loginPage: '/login' });
+let PRODUCTION_APP: boolean = !process.env.NAMELEARNER_DEV;
 
 // Logging
-app.use(require('morgan')('combined'));
+if (!PRODUCTION_APP) {
+	app.use(require('morgan')('combined'));
+}
 
 // DB
 mongoose.connect('mongodb://localhost:27017/nameLearner');
@@ -45,6 +48,10 @@ app.post('/login', auth.authenticateUser(), function(req, res) {
 
 app.get('/logout', auth.onLogout());
 
+// Idea to serve static pages without multiple instances of HTMLWebpackPlugin (look into Jade!)
+// dist/public (actually should be out/public)
+// app.use('/', express.static(PUBLIC_CONTENT));
+
 // Other content
 app.use('/', auth.ensureLoggedIn());
 app.use('/api', api);
@@ -57,14 +64,15 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 });
 
 // Start server
-if (process.env.NAMELEARNER_DEV) {
-	let port = DEV_PORT;
-	app.listen(port, function() {
-		console.log('Listening on port ' + port + ', serving ' + CONTENT_DIR);
+if (PRODUCTION_APP) {
+	startProductionServer(app, (result: string) => {
+		console.log(result);
+		console.log('Serving ' + CONTENT_DIR + '.');
 	});
 }
 else {
-	startProductionServer(app, (result: string) => {
-		console.log(result.concat('\nServing ' + CONTENT_DIR + '.'));
+	let port = DEV_PORT;
+	app.listen(port, function() {
+		console.log('Dev server listening on port ' + port + ', serving ' + CONTENT_DIR);
 	});
 }

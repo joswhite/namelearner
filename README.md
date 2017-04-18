@@ -10,9 +10,8 @@ The application now can upload images via a separate page. Submit JSON via the "
 
 Note: credentials: root/5091 or admin/Crisis6062
 
-- Git Hooks (forever stop, git pull, npm i, gulp build, forever start)
-  * serve.production.js 31:9 - catch errors if someone posts to your url
-  * forever
+- Git Hooks ()
+  * serve.production.js 31:9 OR forever - catch errors if someone posts to your url
   * if location = refs/heads/master, then quit Node and run bash script
 - Hashed passwords, remove from Git repo, change pwd. http://scottksmith.com/blog/2014/05/29/beer-locker-building-a-restful-api-with-node-passport/
 - Add multiple users from JSON expects object not array (Error in resource configuration for action `save`.
@@ -52,6 +51,9 @@ Run the following commands
 
 Note: `gulp build` and `gulp` may be substituted for 
 `npm run build` and `npm run watch` if you have gulp installed globally.
+
+- forever start ./forever.json
+- forever stop
 
 #### Useful commands
 - `npm run build` - gulp builds project only once

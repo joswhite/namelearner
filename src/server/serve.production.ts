@@ -57,7 +57,7 @@ function startProductionServer(expressApp, callback) {
     }
 }
 
-// If running from command line, start server
+// If running from command line, start server (without expressApp)
 // Ssee http://stackoverflow.com/questions/6398196
 if (require.main === module) {
     startProductionServer(null, (result) => { console.log(result); });

@@ -1,0 +1,8 @@
+{
+  "append": true,
+  "outFile": "out.log",
+  "errFile": "err.log",
+  "script": "dist/server/server.js",
+  "watch": true,
+  "watchDirectory": "dist/server"
+}

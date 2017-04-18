@@ -1,6 +1,7 @@
 var autoPrefixer = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
+// var indexHTMLPath = process.env.NAMELEARNER_DEV
 
 module.exports = {
     devtool: 'cheap-module-source-map',

@@ -7,7 +7,7 @@
     "build": "node ./node_modules/gulp/bin/gulp.js build",
     "clean": "node ./node_modules/gulp/bin/gulp.js clean",
     "import": "node ./dist/setup/importData.js",
-    "start": "node ./dist/server/server.js",
+    "start": "node ./node_modules/supervisor/lib/cli-wrapper.js -w dist/server dist/server/server.js",
     "test": "echo \"Error: tests not set up\" && exit 1",
     "watch": "node ./node_modules/gulp/bin/gulp.js watch",
     "term": "node ./dist/server/dev/term.js"
@@ -37,7 +37,6 @@
     "jsonfile": "2.4.0",
     "mongoose": "4.7.0",
     "passport": "0.3.2",
-    "passport-http-bearer": "1.0.1",
     "passport-local": "1.0.0"
   },
   "devDependencies": {
@@ -64,6 +63,7 @@
     "css-loader": "0.26.1",
     "debug": "2.6.1",
     "ejs": "2.5.6",
+    "forever": "0.15.3",
     "gulp": "3.9.1",
     "gulp-clean": "0.3.2",
     "gulp-typescript": "3.1.4",
@@ -77,10 +77,11 @@
     "readcommand": "0.3.0",
     "sass-loader": "4.1.1",
     "style-loader": "0.13.1",
+    "supervisor": "0.12.0",
     "ts-loader": "1.3.3",
     "tslint": "4.3.1",
     "tslint-loader": "3.3.0",
-    "typescript": "2.1.4",
+    "typescript": "2.2.1",
     "webpack": "1.14.0",
     "webpack-stream": "3.2.0"
   }
