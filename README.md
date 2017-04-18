@@ -10,6 +10,7 @@ The application now can upload images via a separate page. Submit JSON via the "
 
 Note: credentials: root/5091 or admin/Crisis6062
 
+- Make my user have more privileges so I can do this from home
 - Git Hooks ()
   * serve.production.js 31:9 OR forever - catch errors if someone posts to your url
   * if location = refs/heads/master, then quit Node and run bash script
