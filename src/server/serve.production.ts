@@ -4,6 +4,7 @@ import http = require('http');
 import https = require('https');
 import os = require('os');
 import path = require('path');
+import updateApplication from './update';
 
 const PROD_PORT_GITHUB_WEBHOOKS = 1739;
 const PROD_PORT_HTTP = 80;
@@ -43,7 +44,9 @@ function startProductionServer(expressApp, callback) {
     }).listen(PROD_PORT_GITHUB_WEBHOOKS);
 
     handler.on('push', function (event) {
-        console.log('Received a push event to %s', event.payload.ref);
+        if (event.payload.ref === 'refs/heads/master') {
+            updateApplication();
+        }
     });
 
     // Redirect http to https
