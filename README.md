@@ -11,7 +11,6 @@ The application now can upload images via a separate page. Submit JSON via the "
 Note: credentials: root/5091 or admin/Crisis6062
 
 - Git Hooks ()
-  * if location = refs/heads/master, then quit Node and run restart.sh (check how to do this in SLIK besides searching on Google)
   * serve.production.js 31:9 OR forever - catch errors if someone posts to your url
 - Make my user have more privileges so I can do this from home
 - Hashed passwords, remove from Git repo, change pwd. http://scottksmith.com/blog/2014/05/29/beer-locker-building-a-restful-api-with-node-passport/
