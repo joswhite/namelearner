@@ -1,5 +1,8 @@
 {
   "append": true,
   "logFile": "forever.log",
+  // ~/.forever/logFile includes everything in outFile and errFile
   "script": "dist/server/server.js"
+  // "watch": true,
+  // "watchDirectory": "dist/server"
 }
