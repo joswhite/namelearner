@@ -1,9 +1,11 @@
 import { spawn } from 'child_process';
+import moment = require('moment');
 
 export default updateApplication;
 
 function updateApplication() {
-    console.log('Updating!');
+    let timestamp = moment().format('MMMM Do, h:mm:ss a');
+    console.log(`${timestamp}: Updating application via "restart.sh":`);
     let shell = spawn('bash', ['restart.sh'], {stdio: 'ignore', detached: true});
     shell.unref();
 }
