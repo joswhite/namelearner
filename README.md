@@ -2,7 +2,6 @@
 
 Learn the names of those in your organization. Written by Joseph White, 2016-2017. Unauthorized use prohibited.
 
-
 ### Todos
 
 #### Application
