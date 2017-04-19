@@ -9,6 +9,7 @@ Learn the names of those in your organization. Written by Joseph White, 2016-201
 The application now can upload images via a separate page. Submit JSON via the "Add" tab. Next:
 
 Note: credentials: root/5091 or admin/Crisis6062
+
 - Make my user have more privileges so I can do this from home
 - Hashed passwords, remove from Git repo, change pwd. http://scottksmith.com/blog/2014/05/29/beer-locker-building-a-restful-api-with-node-passport/
 - Add multiple users from JSON expects object not array (Error in resource configuration for action `save`.
