@@ -56,7 +56,7 @@ function startProductionServer(expressApp, callback) {
     }).listen(PROD_PORT_HTTP);
 
     if (callback) {
-        callback('Production server started!');
+        callback('\nnamelearner# Production server started!');
     }
 }
 
