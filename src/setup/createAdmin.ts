@@ -1,13 +1,13 @@
 /* Creates an admin with USERNAME and PASSWORD
    node dist/setup/createAdmin.js USERNAME PASSWORD
  */
-import mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
 mongoose.connect('mongodb://localhost:27017/nameLearner');
-let userModel = require('../server/models/user');
-let privileges = require('../server/config/privileges');
+import userModel from '../server/models/user';
+import PRIVILEGES from '../server/config/privileges';
 
 let user = {
-	privilegeLevel: privileges.ADMIN,
+	privilegeLevel: PRIVILEGES.ADMIN,
 	name: 'Administrator',
 	username: process.argv[2],
 	password: process.argv[3]

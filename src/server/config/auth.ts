@@ -2,9 +2,9 @@ import connectEnsureLogin = require('connect-ensure-login');
 import express = require('express');
 import passport = require('passport');
 import passportLocal = require('passport-local');
+import { IUserModel, User } from '../models/user';
 
 let Strategy = passportLocal.Strategy;
-let userModel = require('../models/user');
 
 export interface AuthOptions {
 	loginPage: string;
@@ -12,13 +12,16 @@ export interface AuthOptions {
 
 export default class AuthenticateUser {
 	private Strategy = new Strategy((username, password, callback) => {
-		userModel.findOne({ username: username }, function(error, user) {
+		User.findOne({ username: username }, function(error: Error, user: IUserModel) {
 			if (error) { return callback(error); }
-			//TODO: https://code.ciphertrick.com/2016/01/18/salt-hash-passwords-using-nodejs-crypto/
-			//let passwordHash = '44';
-			//if (user.password.hash != passwordHash) { return callback(null, false); }
-			if (!user || user.password != password) { return callback(null, false); }
-			return callback(null, user);
+			if (!user) { return callback(null, false); }
+
+			user.verifyPassword(password, (err: Error, isMatch: boolean) =>{
+				if (err) { return callback(err); }
+				if (!isMatch) { return callback(null, false); }
+
+				return callback(null, user);
+			});
 		});
 	});
 
@@ -30,7 +33,7 @@ export default class AuthenticateUser {
 		});
 
 		passport.deserializeUser(function(id, callback) {
-			userModel.findById(id, function (error, user) {
+			User.findById(id, function (error, user) {
 				if (error) { return callback(error); }
 				callback(null, user);
 			});

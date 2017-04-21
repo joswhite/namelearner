@@ -10,7 +10,8 @@ The application now can upload images via a separate page. Submit JSON via the "
 
 Note: credentials: root/5091 or admin/Crisis6062
 
-- Hashed passwords, remove from Git repo, change pwd. http://scottksmith.com/blog/2014/05/29/beer-locker-building-a-restful-api-with-node-passport/
+- Make users only view their own images (add user/groupName to path)
+- Make users not be able to access each other's data and not be able to edit their username, privileges, etc, without ADMIN rights
 - Expire authenticated sessions after a certain amount of time
 - Serve dist/public (see server.ts)
 - Add multiple users from JSON expects object not array (Error in resource configuration for action `save`.
@@ -24,7 +25,6 @@ Note: credentials: root/5091 or admin/Crisis6062
 #### Environment
 
 - get scss source maps to load
-
 
 ### Usage
 
@@ -46,16 +46,10 @@ Note: credentials: root/5091 or admin/Crisis6062
 Run the following commands
 1. `npm install` - install all dependencies
 2. `npm run watch` - gulp watch for changes in TS code
-3. `npm start` - start your server
+3. `npm start` - start your server (`./restart.sh` in production)
 
 Note: `gulp build` and `gulp` may be substituted for 
 `npm run build` and `npm run watch` if you have gulp installed globally.
-
-- forever start ./forever.json
-- forever stop
-
-#### Useful commands
-- `npm run build` - gulp builds project only once
 
 ### Directory Structure
 

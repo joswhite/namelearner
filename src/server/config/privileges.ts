@@ -2,5 +2,6 @@
 
  */
 export default {
-	ADMIN: 5
+	ADMIN: 5,
+	BASIC: 2
 }

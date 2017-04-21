@@ -1,4 +1,4 @@
-let personModel = require('../models/person');
+import personModel from '../models/person';
 let httpStatus = require('http-status-codes');
 // 200 OK, 201 CREATED, 400 BAD_REQUEST, 401 UNAUTHORIZED, 404 NOT_FOUND
 // 200 is implied but we are being verbose here

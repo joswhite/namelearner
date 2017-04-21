@@ -2,8 +2,9 @@
 // Because the usernames should be unique, we use them for show, create, update, and delete operations.
 // You can only create one user at a time
 
-let userModel = require('../models/user');
-let httpStatus = require('http-status-codes');
+import PRIVILEGES from '../config/privileges';
+import userModel from '../models/user';
+import * as httpStatus from 'http-status-codes';
 // 200 OK, 201 CREATED, 400 BAD_REQUEST, 401 UNAUTHORIZED, 404 NOT_FOUND
 // 200 is implied but we are being verbose here
 
@@ -51,6 +52,7 @@ export function create(req, res) {
 }
 
 function createUser(req, res) {
+	req.body.privilegeLevel = PRIVILEGES.BASIC;
 	userModel.create(req.body, function(err, data) {
 		if (err) {
 			handleError(res, err, 'Could not create user', httpStatus.BAD_REQUEST);
@@ -63,6 +65,7 @@ function createUser(req, res) {
 
 export function update(req, res) {
 	let username = req.params.username;
+	req.params.privilegeLevel = PRIVILEGES.BASIC;
 	userModel.findOneAndUpdate({ username: username }, req.body, function(err, data) {
 		if (err) {
 			handleError(res, err, 'Could not update user with username ' + username, httpStatus.BAD_REQUEST);
