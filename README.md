@@ -10,7 +10,6 @@ The application now can upload images via a separate page. Submit JSON via the "
 
 Note: credentials: root/5091 or admin/Crisis6062
 
-- Make my user have more privileges so I can do this from home
 - Hashed passwords, remove from Git repo, change pwd. http://scottksmith.com/blog/2014/05/29/beer-locker-building-a-restful-api-with-node-passport/
 - Expire authenticated sessions after a certain amount of time
 - Serve dist/public (see server.ts)
