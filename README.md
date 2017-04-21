@@ -12,6 +12,8 @@ Note: credentials: root/5091 or admin/Crisis6062
 
 - Make my user have more privileges so I can do this from home
 - Hashed passwords, remove from Git repo, change pwd. http://scottksmith.com/blog/2014/05/29/beer-locker-building-a-restful-api-with-node-passport/
+- Expire authenticated sessions after a certain amount of time
+- Serve dist/public (see server.ts)
 - Add multiple users from JSON expects object not array (Error in resource configuration for action `save`.
   Expected response to contain an object but got an array (Request: POST /api/people))
 - Add "Welcome Joseph" to Angular app by using 'req.user' (or maybe not, since only Express can access it?)
