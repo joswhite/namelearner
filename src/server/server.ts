@@ -2,19 +2,26 @@ import api = require('./api');
 import AuthenticateUser from './config/auth';
 import bodyParser = require('body-parser');
 import connectMongo = require('connect-mongo');
-import express = require('express');
+import ensureExists from './ensure-exists';
+import * as express from 'express';
 import expressSession = require('express-session');
 import mongoose = require('mongoose');
 import path = require('path');
 import startProductionServer from './serve.production';
 
-// App setup
 const DEV_PORT = 8020;
 const CONTENT_DIR = path.join(__dirname, '../client');
+
+// Ensure required directories exist
+ensureExists(path.join(CONTENT_DIR, 'images'));
+ensureExists(path.join(CONTENT_DIR, 'images/people'));
+
+// App setup
 let app = express();
 const MongoStore = connectMongo(expressSession);
 let auth = new AuthenticateUser(app, { loginPage: '/login' });
 let PRODUCTION_APP: boolean = !process.env.NAMELEARNER_DEV;
+
 
 // Logging
 if (!PRODUCTION_APP) {

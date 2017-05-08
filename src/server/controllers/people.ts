@@ -1,5 +1,9 @@
+import * as contentType from 'content-type';
+import * as fs from 'fs';
+import * as httpStatus from 'http-status-codes';
+import * as mime from 'mime';
 import personModel from '../models/person';
-let httpStatus = require('http-status-codes');
+
 // 200 OK, 201 CREATED, 400 BAD_REQUEST, 401 UNAUTHORIZED, 404 NOT_FOUND
 // 200 is implied but we are being verbose here
 
@@ -10,7 +14,7 @@ function handleError(res, err, message, code) {
 }
 
 export function show(req, res) {
-	var id = req.params.id;
+	let id = req.params.id;
 	personModel.findById(id, function(err, data) {
 		if (err) {
 			handleError(res, err, 'Could not find person with id ' + id, httpStatus.NOT_FOUND);
@@ -44,7 +48,7 @@ export function create(req, res) {
 }
 
 export function update(req, res) {
-	var id = req.params.id;
+	let id = req.params.id;
 	personModel.findByIdAndUpdate(id, req.body, function(err, data) {
 		if (err) {
 			handleError(res, err, 'Could not update person with id ' + id, httpStatus.BAD_REQUEST);
@@ -55,8 +59,25 @@ export function update(req, res) {
 	});
 }
 
+export function upload(req, res) {
+	let id = req.params.id;
+	let type = contentType.parse(req).type;
+	let extension = mime.extension(type);
+	let file = fs.createWriteStream(`./dist/client/images/people/${id}.${extension}`, 'binary'); // overwrites if exists
+	file.on('error', (err: Error) => {
+		handleError(res, err, 'Server error in saving image for person with id ' + id,
+			httpStatus.INTERNAL_SERVER_ERROR);
+	});
+	req.pipe(file);
+	req.on('end', () => {
+		file.close();
+		res.status(httpStatus.OK).end('OK+' + id);
+	});
+
+}
+
 export function remove(req, res) {
-	var id = req.params.id;
+	let id = req.params.id;
 	personModel.findByIdAndRemove(id, req.body, function(err, data) {
 		if (err) {
 			handleError(res, err, 'Could not delete person with id ' + id, httpStatus.BAD_REQUEST);

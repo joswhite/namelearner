@@ -1,4 +1,3 @@
-
 <form novalidate id="form">
     <fieldset>
         <legend>Add Member</legend>
@@ -25,4 +24,11 @@
         </label>
         <div class="rightCol"><input type="submit" ng-click="$ctrl.addData(form)"></div>
     </fieldset>
+</form>
+
+<hr>
+<form action="/api/people/upload/MS31stWard" enctype="multipart/form-data" method="post">
+    <input type="text" name="title"><br>
+    <input type="file" name="upload" multiple="multiple"><br>
+    <input type="submit" value="Upload">
 </form>

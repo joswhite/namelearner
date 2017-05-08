@@ -16,7 +16,7 @@ export default class AuthenticateUser {
 			if (error) { return callback(error); }
 			if (!user) { return callback(null, false); }
 
-			user.verifyPassword(password, (err: Error, isMatch: boolean) =>{
+			user.verifyPassword(password, (err: Error, isMatch: boolean) => {
 				if (err) { return callback(err); }
 				if (!isMatch) { return callback(null, false); }
 

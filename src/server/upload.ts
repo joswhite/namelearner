@@ -5,7 +5,7 @@
 // Note: choose the group name to be the child directory in form.uploadDir.
 
 import * as formidable from 'formidable';
-var http = require('http'),
+let http = require('http'),
 	util = require('util');
 
 http.createServer(function(req, res) {
