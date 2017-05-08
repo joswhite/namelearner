@@ -1,6 +1,6 @@
 import * as contentType from 'content-type';
 import * as fs from 'fs';
-import {PEOPLE_IMAGES_DIR} from '../config/file-system.config';
+import {PEOPLE_IMAGES_DIR, PEOPLE_IMAGES_WEB} from '../config/file-system.config';
 import * as httpStatus from 'http-status-codes';
 import * as mime from 'mime';
 import * as path from 'path';
@@ -65,7 +65,8 @@ export function upload(req, res) {
 	let id = req.params.id;
 	let type = contentType.parse(req).type;
 	let extension = mime.extension(type);
-	let destinationPath = path.join(PEOPLE_IMAGES_DIR, `${id}.${extension}`);
+	let filename = `${id}.${extension}`;
+	let destinationPath = path.join(PEOPLE_IMAGES_DIR, filename);
 	let file = fs.createWriteStream(destinationPath, 'binary'); // overwrites if exists
 	file.on('error', (err: Error) => {
 		handleError(res, err, 'Server error in saving image for person with id ' + id,
@@ -74,7 +75,7 @@ export function upload(req, res) {
 	req.pipe(file);
 	req.on('end', () => {
 		file.close();
-		res.status(httpStatus.OK).end('OK+' + id);
+		res.status(httpStatus.OK).end(`${PEOPLE_IMAGES_WEB}/${filename}`);
 	});
 
 }
