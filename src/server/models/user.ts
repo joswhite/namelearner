@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema({
 	privilegeLevel: Number
 });
 
-export interface IUserModel extends mongoose.Document {
+export interface IUser extends mongoose.Document {
 	name: string;
 	username: string;
 	password: string;

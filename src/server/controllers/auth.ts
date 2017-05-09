@@ -2,7 +2,7 @@ import connectEnsureLogin = require('connect-ensure-login');
 import express = require('express');
 import passport = require('passport');
 import passportLocal = require('passport-local');
-import { IUserModel, User } from '../models/user';
+import { IUser, User } from '../models/user';
 
 let Strategy = passportLocal.Strategy;
 
@@ -12,7 +12,7 @@ export interface AuthOptions {
 
 export default class AuthenticateUser {
 	private Strategy = new Strategy((username, password, callback) => {
-		User.findOne({ username: username }, function(error: Error, user: IUserModel) {
+		User.findOne({ username: username }, function(error: Error, user: IUser) {
 			if (error) { return callback(error); }
 			if (!user) { return callback(null, false); }
 
