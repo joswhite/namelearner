@@ -1,34 +1,15 @@
 <form novalidate id="form">
     <fieldset>
-        <legend>Add Member</legend>
-        <h2>Add Manually</h2>
+        <legend>Add Members</legend>
+        <h2>Add Multiple</h2>
         <div class="row">
-            <div class="left-col"><label for="name">Name:</label></div>
-            <div class="right-col"><input type="text" id="name" ng-model="form.name"></div>
+            <div class="left-col"><label for="people">JSON Data:</label></div>
+            <div class="right-col"><input type="file" id="people" json-file-input="people" accept="application/json"></div>
         </div>
         <div class="row">
-            <div class="left-col text-area"><label for="phoneNumbers">Phone Numbers:</label></div>
-            <div class="right-col"><textarea id="phoneNumbers" ng-model="form.phoneNumbers"></textarea></div>
+            <div class="left-col"><label for="pictures">Pictures:</label></div>
+            <div class="right-col"><input type="file" id="pictures" file-input="pictures" multiple="multiple" accept="image/*"></div>
         </div>
-        <div class="row">
-            <div class="left-col text-area"><label for="address">Address:</label></div>
-            <div class="right-col"><textarea id="address" ng-model="form.address"></textarea></div>
-        </div>
-        <div class="row">
-            <div class="left-col"><label for="picture">Picture URL:</label></div>
-            <div class="right-col"><input type="text" id="picture" ng-model="form.picture"></div>
-        </div>
-        <h2>Or, upload JSON file</h2>
-        <label>
-            <input type="file" json-file-input="form.jsonData">
-        </label>
-        <div class="rightCol"><input type="submit" ng-click="$ctrl.addData(form)"></div>
+        <div class="rightCol"><input type="submit" ng-click="$ctrl.addData(people, pictures)"></div>
     </fieldset>
-</form>
-
-<hr>
-<form action="/api/people/upload/MS31stWard" enctype="multipart/form-data" method="post">
-    <input type="text" name="title"><br>
-    <input type="file" name="upload" multiple="multiple"><br>
-    <input type="submit" value="Upload">
 </form>

@@ -1,14 +1,34 @@
 import * as ng from 'angular-resource';
-import {IPerson} from '../../server/models/person';
 import {IHttpService} from 'angular';
 
 export interface IPeopleService {
+	convertToPerson(data: IFormPerson): IPerson;
 	delete(data: Object, callback?: Function): ng.resource.IResource<IPerson>
 	get(data: Object, callback?: Function): ng.resource.IResource<IPerson>
 	query(data: Object, callback?: Function): ng.resource.IResourceArray<ng.resource.IResource<IPerson>>
 	remove(data: Object, callback?: Function): ng.resource.IResource<IPerson>
 	save(data: Object, callback?: Function): ng.resource.IResource<IPerson>
-	upload(id: string, picture: File, callback: (url: string) => void): void;
+	upload(id: string, picture: File, callback?: (url: string) => void): void;
+}
+
+export interface IFormPerson {
+	address: string;
+	name: string;
+	phoneNumbers: string;
+	picture?: string;
+}
+
+export interface IPerson {
+	address: string[];
+	group: string;
+	_id?: string;
+	name: string;
+	phoneNumbers: string[];
+	picture?: string;
+}
+
+function stringToArray(str: string) {
+	return str ? str.split('\n') : [];
 }
 
 export default class PeopleService implements IPeopleService {
@@ -19,6 +39,16 @@ export default class PeopleService implements IPeopleService {
 	constructor(private $http: IHttpService, private $resource: ng.resource.IResourceService) {
 		this.resourceInstance = $resource('/api/people/:id');
 		this.fileReader = new FileReader();
+	}
+
+	convertToPerson(data: IFormPerson): IPerson {
+		let person: IPerson = {
+			address: stringToArray(data.address),
+			group: null,
+			name: data.name,
+			phoneNumbers: stringToArray(data.phoneNumbers)
+		};
+		return person;
 	}
 
 	delete(data: Object, callback: Function): ng.resource.IResource<IPerson> {

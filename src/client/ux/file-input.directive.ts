@@ -10,9 +10,8 @@ class FileInputDirective implements IDirective {
 
 		iElement.bind('change', function () {
 			let fileList: FileList = iElement[0]['files'];
-			let file = fileList[0];
 			self.$parse(iAttributes['fileInput'])
-                .assign($scope, file);
+                .assign($scope, fileList);
 			$scope.$apply();
 		});
 	}
