@@ -6,9 +6,7 @@ Learn the names of those in your organization. Written by Joseph White, 2016-201
 
 #### Application
 
-- from the temp upload form create not 1 but 2 level dirs.
-- api choice for upload form (ask Joe)
-- upload images via same server, save to owner/groupName
+- Fix gulp issues: copy in images folder over and use watch + livereload for everything.
 - Redo people: add "owner", "groupName"; make upload be via same server
 - Make deletion of group possible, and a hook to delete the images in the folder.
 - Make deletion of people delete the correct image.
