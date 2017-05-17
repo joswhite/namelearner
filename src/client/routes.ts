@@ -34,6 +34,7 @@ export default [
             template: '<h2 style="color:red;">Sorry, Edit Person not implemented!</h2>'
         });
         $stateProvider.state('new', { url: '/new', component: 'addComponent' });
+        $stateProvider.state('new-multi', { url: '/new-multi', component: 'addMultiComponent' });
         $stateProvider.state({
             name: 'users',
             url: '/users',

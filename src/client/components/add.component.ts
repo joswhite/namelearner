@@ -1,4 +1,5 @@
 import { Component } from '../component';
+import {IFormPerson, IPeopleService} from '../services/people.service';
 
 @Component({
 	stylesheetUrl: require('components/add.component.scss'),
@@ -6,30 +7,17 @@ import { Component } from '../component';
 })
 export default class AddComponent {
 	static $inject = ['PeopleService'];
-	constructor(private peopleService: any) {}
+	constructor(private peopleService: IPeopleService) {}
 
-	addData(form) {
-		if (form.jsonData) {
-			this.addJSONData(form.jsonData);
-		}
-		else {
-		    let person = {
-		        name: form.name,
-                phoneNumbers: form.phoneNumbers,
-                address: form.address,
-                picture: form.picture
-            };
-		    this.addPerson(person);
-		}
-	}
+	addData(formPerson: IFormPerson, pictures: File[]) {
+		let person = this.peopleService.convertToPerson(formPerson);
+		let savedPerson = this.peopleService.save(person, () => {
+			if (!pictures || !pictures[0]) {
+				return;
+			}
 
-	addPerson(person) {
-		person.address = person.address.split('\n');
-		person.phoneNumbers = person.phoneNumbers.split('\n');
-		this.peopleService.save(person);
-	}
-
-	addJSONData(people) {
-        this.peopleService.save(people);
+			let id = savedPerson.toJSON()._id;
+			this.peopleService.upload(id, pictures[0]);
+		});
 	}
 }

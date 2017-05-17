@@ -2,7 +2,7 @@
 // Because the usernames should be unique, we use them for show, create, update, and delete operations.
 // You can only create one user at a time
 
-import PRIVILEGES from '../config/privileges';
+import PRIVILEGES from '../config/privileges.config';
 import userModel from '../models/user';
 import * as httpStatus from 'http-status-codes';
 // 200 OK, 201 CREATED, 400 BAD_REQUEST, 401 UNAUTHORIZED, 404 NOT_FOUND

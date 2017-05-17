@@ -1,20 +1,26 @@
 import api = require('./api');
-import AuthenticateUser from './config/auth';
+import AuthenticateUser from './controllers/auth';
 import bodyParser = require('body-parser');
 import connectMongo = require('connect-mongo');
-import express = require('express');
+import * as fileSystem from './config/file-system.config';
+import * as express from 'express';
 import expressSession = require('express-session');
 import mongoose = require('mongoose');
 import path = require('path');
 import startProductionServer from './serve.production';
 
-// App setup
 const DEV_PORT = 8020;
-const CONTENT_DIR = path.join(__dirname, '../client');
+
+
+// Ensure required directories exist
+fileSystem.initialize();
+
+// App setup
 let app = express();
 const MongoStore = connectMongo(expressSession);
 let auth = new AuthenticateUser(app, { loginPage: '/login' });
 let PRODUCTION_APP: boolean = !process.env.NAMELEARNER_DEV;
+
 
 // Logging
 if (!PRODUCTION_APP) {
@@ -39,7 +45,7 @@ auth.startPassport();
 
 // Public content
 app.get('/login', (req: express.Request, res: express.Response) => {
-	res.sendFile(path.join(CONTENT_DIR, './login.html'));
+	res.sendFile(path.join(fileSystem.CONTENT_DIR, 'login.html'));
 });
 
 app.post('/login', auth.authenticateUser(), function(req, res) {
@@ -55,7 +61,7 @@ app.get('/logout', auth.onLogout());
 // Other content
 app.use('/', auth.ensureLoggedIn());
 app.use('/api', api);
-app.use('/', express.static(CONTENT_DIR));
+app.use('/', express.static(fileSystem.CONTENT_DIR));
 
 // Error handling (designated by 4-parameter type signature)
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
@@ -67,12 +73,12 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 if (PRODUCTION_APP) {
 	startProductionServer(app, (result: string) => {
 		console.log(result);
-		console.log('Serving ' + CONTENT_DIR + '.');
+		console.log('Serving ' + fileSystem.CONTENT_DIR + '.');
 	});
 }
 else {
 	let port = DEV_PORT;
 	app.listen(port, function() {
-		console.log('Dev server listening on port ' + port + ', serving ' + CONTENT_DIR);
+		console.log('Dev server listening on port ' + port + ', serving ' + fileSystem.CONTENT_DIR);
 	});
 }

@@ -6,21 +6,19 @@ Learn the names of those in your organization. Written by Joseph White, 2016-201
 
 #### Application
 
-The application now can upload images via a separate page. Submit JSON via the "Add" tab. Next:
-
-Note: credentials: root/5091 or admin/Crisis6062
-
-- Make users only view their own images (add user/groupName to path)
+- Clear people in database, make images url not include groupName, repopulate and test; deploy  
+- Fix gulp issues: copy in images folder over and use watch + livereload for everything.
+- Redo people: add "owner", "groupName"; make upload be via same server
+- Make deletion of group possible, and a hook to delete the images in the folder.
+- Make deletion of people delete the correct image.
+- Make users only view their own images
 - Make users not be able to access each other's data and not be able to edit their username, privileges, etc, without ADMIN rights
 - Expire authenticated sessions after a certain amount of time
 - Serve dist/public (see server.ts)
 - Add multiple users from JSON expects object not array (Error in resource configuration for action `save`.
   Expected response to contain an object but got an array (Request: POST /api/people))
 - Add "Welcome Joseph" to Angular app by using 'req.user' (or maybe not, since only Express can access it?)
-- password hash
-- upload images via same server
-- deploy on Digital Ocean or AWS
-- users
+
 
 #### Environment
 

@@ -1,0 +1,15 @@
+<form novalidate id="form">
+    <fieldset>
+        <legend>Add Members</legend>
+        <h2>Add Multiple</h2>
+        <div class="row">
+            <div class="left-col"><label for="people">JSON Data:</label></div>
+            <div class="right-col"><input type="file" id="people" json-file-input="people" accept="application/json"></div>
+        </div>
+        <div class="row">
+            <div class="left-col"><label for="pictures">Pictures:</label></div>
+            <div class="right-col"><input type="file" id="pictures" file-input="pictures" multiple="multiple" accept="image/*"></div>
+        </div>
+        <div class="rightCol"><input type="submit" ng-click="$ctrl.addData(people, pictures)"></div>
+    </fieldset>
+</form>
