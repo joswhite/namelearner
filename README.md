@@ -6,6 +6,7 @@ Learn the names of those in your organization. Written by Joseph White, 2016-201
 
 #### Application
 
+- Clear people in database, make images url not include groupName, repopulate and test; deploy  
 - Fix gulp issues: copy in images folder over and use watch + livereload for everything.
 - Redo people: add "owner", "groupName"; make upload be via same server
 - Make deletion of group possible, and a hook to delete the images in the folder.

@@ -81,15 +81,17 @@ export function upload(req, res) {
 		else {
 			let destinationPath = path.join(PEOPLE_IMAGES_DIR, filename);
 			let file = fs.createWriteStream(destinationPath, 'binary'); // overwrites if exists
-			file.on('error', (err: Error) => {
+			let pipe = req.pipe(file);
+			pipe.on('error', (err: Error) => {
 				handleError(res, err, 'Server error in saving image for person with id ' + id,
 					httpStatus.INTERNAL_SERVER_ERROR);
 			});
-			req.pipe(file);
-			req.on('end', () => {
+			// Finish write before closing file: listen on pipe (not req). http://stackoverflow.com/questions/17588179
+			pipe.on('finish', () => {
 				file.close();
 				res.status(httpStatus.OK).end(filename);
 			});
+
 		}
 	});
 }
