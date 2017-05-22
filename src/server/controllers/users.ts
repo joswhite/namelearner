@@ -17,7 +17,7 @@ function handleError(res, err, message, code) {
 export function show(req, res) {
 	let username = req.params.username;
 	userModel.findOne({ username: username }, function(err, data) {
-		if (err) {
+		if (err || !data) {
 			handleError(res, err, 'Could not find user with username ' + username, httpStatus.NOT_FOUND);
 		}
 		else {
@@ -28,7 +28,7 @@ export function show(req, res) {
 
 export function list(req, res) {
 	userModel.find({}, function(err, data) {
-		if (err) {
+		if (err || !data) {
 			handleError(res, err, 'Could not retrieve users', httpStatus.INTERNAL_SERVER_ERROR);
 		}
 		else {
@@ -54,7 +54,7 @@ export function create(req, res) {
 function createUser(req, res) {
 	req.body.privilegeLevel = PRIVILEGES.BASIC;
 	userModel.create(req.body, function(err, data) {
-		if (err) {
+		if (err || !data) {
 			handleError(res, err, 'Could not create user', httpStatus.BAD_REQUEST);
 		}
 		else {
@@ -66,8 +66,8 @@ function createUser(req, res) {
 export function update(req, res) {
 	let username = req.params.username;
 	req.params.privilegeLevel = PRIVILEGES.BASIC;
-	userModel.findOneAndUpdate({ username: username }, req.body, function(err, data) {
-		if (err) {
+	userModel.findOneAndUpdate({ username: username }, req.body, {new: true}, function(err, data) {
+		if (err || !data) {
 			handleError(res, err, 'Could not update user with username ' + username, httpStatus.BAD_REQUEST);
 		}
 		else {
@@ -78,8 +78,8 @@ export function update(req, res) {
 
 export function remove(req, res) {
 	let username = req.params.username;
-	userModel.findOneAndRemove({ username: username }, req.body, function(err, data) {
-		if (err) {
+	userModel.findOneAndRemove({ username: username }, function(err, data) {
+		if (err || !data) {
 			handleError(res, err, 'Could not delete user with username ' + username, httpStatus.BAD_REQUEST);
 		}
 		else {

@@ -6,9 +6,10 @@ Learn the names of those in your organization. Written by Joseph White, 2016-201
 
 #### Application
 
-- Clear people in database, make images url not include groupName, repopulate and test; deploy  
-- Fix gulp issues: copy in images folder over and use watch + livereload for everything.
+- Add error when no data from MongoDB
 - Redo people: add "owner", "groupName"; make upload be via same server
+- Fix gulp issues: copy pages folder and use watch + livereload for everything.
+- express session secret should be saved internally
 - Make deletion of group possible, and a hook to delete the images in the folder.
 - Make deletion of people delete the correct image.
 - Make users only view their own images

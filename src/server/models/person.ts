@@ -30,6 +30,9 @@ PersonSchema.statics.setPicture = function(id: string, picture: string, callback
 		if (err) {
 			return callback(err);
 		}
+		if (!person) {
+			return callback(new Error('Could not find person with id ' + id));
+		}
 
 		let oldPicture = person.picture;
 		if (oldPicture === picture) {
