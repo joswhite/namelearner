@@ -82,6 +82,9 @@ temp/ (default location)
 
 #### Response
 
+// 200 OK, 201 CREATED, 400 BAD_REQUEST, 401 UNAUTHORIZED, 404 NOT_FOUND
+// 200 is implied but we are being verbose here
+
 - If error, status code is 4xx or 5xx and body is an error message (string)
 - Otherwise, status code is 2xx and body is an object or an array of objects
 related to the request

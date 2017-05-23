@@ -6,9 +6,6 @@ import * as mime from 'mime';
 import * as path from 'path';
 import personModel, {IPerson} from '../models/person';
 
-// 200 OK, 201 CREATED, 400 BAD_REQUEST, 401 UNAUTHORIZED, 404 NOT_FOUND
-// 200 is implied but we are being verbose here
-
 function handleError(res, err, message, code) {
 	let reason = (err && err) ? err : err;
 	console.error('Error: ' + reason);
