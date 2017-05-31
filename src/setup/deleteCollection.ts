@@ -2,7 +2,7 @@
    node dist/setup/deleteCollection.js COLLECTION
  */
 import mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/nameLearner');
+mongoose.connect('mongodb://localhost:27017/namelearner');
 
 import userModel from '../server/models/user';
 import personModel from '../server/models/person';

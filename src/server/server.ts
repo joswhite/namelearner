@@ -28,7 +28,7 @@ if (!PRODUCTION_APP) {
 }
 
 // DB
-mongoose.connect('mongodb://localhost:27017/nameLearner');
+mongoose.connect('mongodb://localhost:27017/namelearner');
 
 // Authentication
 app.use(bodyParser.urlencoded({ extended: true }));	// For passport-local

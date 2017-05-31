@@ -5,7 +5,7 @@ const SALT_ROUNDS = 5;
 
 const UserSchema = new mongoose.Schema({
 	name: String,
-	username: String,
+	username: { type: String, unique: true },
 	password: String,
 	privilegeLevel: Number
 });
@@ -19,7 +19,6 @@ export interface IUser extends mongoose.Document {
 }
 
 UserSchema.pre('save', hashPassword);
-UserSchema.pre('findOneAndUpdate', hashPassword);
 
 // Hash passwords before saving them
 function hashPassword(callback) {

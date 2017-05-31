@@ -6,8 +6,18 @@ Learn the names of those in your organization. Written by Joseph White, 2016-201
 
 #### Application
 
-- Add error when no data from MongoDB
-- Redo people: add "owner", "groupName"; make upload be via same server
+feature/groups
+- Do we want to index routes based on username or ids? What should the address look like in the app?
+- Make user be able to change password via update. (no hook currently on findOneAndUpdate)
+- Make user.ts work properly: cannot create duplicate usernames. Bookmarks: Temp/Mongoose force unique folder
+- Test password updating in user.ts. You may need to change pre('findOneAndUpdate') to a save hook on the Schema, or just use
+  pre('findByIdAndUpdate').
+- Test user and group to make sure all functionality still works in Postman
+- Implement permissions.ts methods and commented-out routes in routes.ts.
+- Make a way to create a group and view people within a certain group or ALL groups user can access.
+  Make group be selectable via dropdown in add and add-multi routes
+
+Other
 - Fix gulp issues: copy pages folder and use watch + livereload for everything.
 - express session secret should be saved internally
 - Make deletion of group possible, and a hook to delete the images in the folder.
@@ -18,7 +28,7 @@ Learn the names of those in your organization. Written by Joseph White, 2016-201
 - Serve dist/public (see server.ts)
 - Add multiple users from JSON expects object not array (Error in resource configuration for action `save`.
   Expected response to contain an object but got an array (Request: POST /api/people))
-- Add "Welcome Joseph" to Angular app by using 'req.user' (or maybe not, since only Express can access it?)
+- Add "Welcome Joseph" to Angular app by using Jade data?
 
 
 #### Environment
