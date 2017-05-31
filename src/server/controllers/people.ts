@@ -6,9 +6,6 @@ import * as mime from 'mime';
 import * as path from 'path';
 import personModel, {IPerson} from '../models/person';
 
-// 200 OK, 201 CREATED, 400 BAD_REQUEST, 401 UNAUTHORIZED, 404 NOT_FOUND
-// 200 is implied but we are being verbose here
-
 function handleError(res, err, message, code) {
 	let reason = (err && err) ? err : err;
 	console.error('Error: ' + reason);
@@ -18,7 +15,7 @@ function handleError(res, err, message, code) {
 export function show(req, res) {
 	let id = req.params.id;
 	personModel.findById(id, function(err, data) {
-		if (err) {
+		if (err || !data) {
 			handleError(res, err, 'Could not find person with id ' + id, httpStatus.NOT_FOUND);
 		}
 		else {
@@ -29,7 +26,7 @@ export function show(req, res) {
 
 export function list(req, res) {
 	personModel.find({}, function(err, data) {
-		if (err) {
+		if (err || !data) {
 			handleError(res, err, 'Could not retrieve people', httpStatus.INTERNAL_SERVER_ERROR);
 		}
 		else {
@@ -41,7 +38,7 @@ export function list(req, res) {
 export function create(req, res) {
 	req.body.picture = DEFAULT_PERSON_PICTURE; // Set picture as default
 	personModel.create(req.body, function(err, data) {
-		if (err) {
+		if (err || !data) {
 			handleError(res, err, 'Could not create person or people', httpStatus.BAD_REQUEST);
 		}
 		else {
@@ -54,13 +51,13 @@ export function update(req, res) {
 	let id: string = req.params.id;
 	let newPerson: IPerson = req.body;
 	personModel.findById(id, (err: Error, person: IPerson) => {
-		if (err) {
+		if (err || !person) {
 			return handleError(res, err, 'Could not update person with id ' + id, httpStatus.BAD_REQUEST);
 		}
 
 		newPerson.picture = person.picture; // Stop picture from being updated
-		personModel.findByIdAndUpdate(id, newPerson, function(err, data) {
-			if (err) {
+		personModel.findByIdAndUpdate(id, newPerson, {new: true}, function(err, data) {
+			if (err || !data) {
 				return handleError(res, err, 'Could not update person with id ' + id, httpStatus.BAD_REQUEST);
 			}
 
@@ -98,8 +95,8 @@ export function upload(req, res) {
 
 export function remove(req, res) {
 	let id = req.params.id;
-	personModel.findByIdAndRemove(id, req.body, function(err, data) {
-		if (err) {
+	personModel.findByIdAndRemove(id, function(err, data) {
+		if (err || !data) {
 			handleError(res, err, 'Could not delete person with id ' + id, httpStatus.BAD_REQUEST);
 		}
 		else {

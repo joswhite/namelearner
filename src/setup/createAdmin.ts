@@ -2,7 +2,7 @@
    node dist/setup/createAdmin.js USERNAME PASSWORD
  */
 import * as mongoose from 'mongoose';
-mongoose.connect('mongodb://localhost:27017/nameLearner');
+mongoose.connect('mongodb://localhost:27017/namelearner');
 import userModel from '../server/models/user';
 import PRIVILEGES from '../server/config/privileges.config';
 
