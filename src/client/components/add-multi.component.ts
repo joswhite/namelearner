@@ -1,6 +1,6 @@
 import { Component } from '../component';
 import {IFormPerson, IPeopleService} from '../services/people.service';
-import {IPerson} from '../../server/models/person';
+import {IPerson} from '../../server/models/person.model';
 
 @Component({
     stylesheetUrl: require('components/add-multi.component.scss'),

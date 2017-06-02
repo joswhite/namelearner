@@ -2,7 +2,7 @@ import connectEnsureLogin = require('connect-ensure-login');
 import express = require('express');
 import passport = require('passport');
 import passportLocal = require('passport-local');
-import { IUser, User } from '../models/user';
+import { IUser, User } from '../models/user.model';
 
 let Strategy = passportLocal.Strategy;
 

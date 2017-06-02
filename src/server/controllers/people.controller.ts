@@ -4,7 +4,7 @@ import {DEFAULT_PERSON_PICTURE, PEOPLE_IMAGES_DIR} from '../config/file-system.c
 import * as httpStatus from 'http-status-codes';
 import * as mime from 'mime';
 import * as path from 'path';
-import personModel, {IPerson} from '../models/person';
+import personModel, {IPerson} from '../models/person.model';
 
 function handleError(res, err, message, code) {
 	let reason = (err && err) ? err : err;

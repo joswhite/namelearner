@@ -24,6 +24,7 @@ export interface IPersonModel extends mongoose.Model<IPerson> {
 	setPicture: (id: string, picture: string, callback: (err: Error) => void) => void;
 }
 
+// To force not set on create/findByIdAndUpdate, use pre ($set for latter)
 // Set a person's picture. If it has changed and was not the default picture, delete the old file
 PersonSchema.statics.setPicture = function(id: string, picture: string, callback: (err: Error) => null) {
 	this.findById(id, (err: Error, person: IPerson) => {

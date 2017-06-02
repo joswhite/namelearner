@@ -2,10 +2,11 @@
    node dist/setup/deleteCollection.js COLLECTION
  */
 import mongoose = require('mongoose');
+(<any>mongoose).Promise = Promise;
 mongoose.connect('mongodb://localhost:27017/namelearner');
 
-import userModel from '../server/models/user';
-import personModel from '../server/models/person';
+import userModel from '../server/models/user.model';
+import personModel from '../server/models/person.model';
 
 let collection = process.argv[2];
 

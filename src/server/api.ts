@@ -2,10 +2,10 @@
 import express = require('express');
 const router = express.Router();
 
-import * as groups from './controllers/groups';
+import * as groups from './controllers/groups.controller';
 import * as permissions from './controllers/permissions';
-import * as people from './controllers/people';
-import * as users from './controllers/users';
+import * as people from './controllers/people.controller';
+import * as users from './controllers/users.controller';
 
 // Notes on permissions:
 // - Full user API, list: only available to admins

@@ -1,7 +1,7 @@
 // Users for the application.
 
 import PRIVILEGES from '../config/privileges.config';
-import userModel from '../models/user';
+import userModel from '../models/user.model';
 import * as httpStatus from 'http-status-codes';
 
 function handleError(res, err, message, code) {

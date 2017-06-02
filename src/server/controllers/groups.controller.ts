@@ -1,5 +1,5 @@
 import * as httpStatus from 'http-status-codes';
-import groupModel, {IGroup} from '../models/group';
+import groupModel, {IGroup} from '../models/group.model';
 
 function handleError(res, err, message, code) {
     let reason = (err && err) ? err : err;

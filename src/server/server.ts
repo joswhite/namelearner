@@ -28,6 +28,7 @@ if (!PRODUCTION_APP) {
 }
 
 // DB
+(<any>mongoose).Promise = Promise;
 mongoose.connect('mongodb://localhost:27017/namelearner');
 
 // Authentication
